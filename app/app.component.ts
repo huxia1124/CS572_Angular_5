@@ -1,10 +1,6 @@
 import { Component }        from '@angular/core';
+import { Product }  from './product'
 
-
-export class Product {
-  id: number;
-  name: string;
-}
 
 const PRODUCTS: Product[] = [
   { id: 11, name: 'iPhone 4' },
@@ -24,20 +20,14 @@ const PRODUCTS: Product[] = [
     selector: 'my-app',
   template: `
   <h1>{{title}}</h1>
-  <div *ngIf="selectedProduct">
-  <h2>{{selectedProduct.name}} details!</h2>
-    <div><label>id: </label>{{selectedProduct.id}}</div>
-    <div>
-      <label>name: </label>
-      <input [(ngModel)]="selectedProduct.name" placeholder="name"/>
-    </div>
-  </div>
 
   <ul class="products">
   <li *ngFor="let product of products" (click)="onSelect(product)" [class.selected]="product === selectedProduct">
     <span class="badge">{{product.id}}</span>{{product.name}}
   </li>
   </ul>
+
+  <my-product-detail [product]="selectedProduct"></my-product-detail>
   
   `
 
@@ -94,7 +84,7 @@ const PRODUCTS: Product[] = [
 })
 
 export class AppComponent {
-  title = "CS472 Angular / Lab 1";
+  title = "CS472 Angular / Lab 2";
   selectedProduct : Product;
   products = PRODUCTS;
 
