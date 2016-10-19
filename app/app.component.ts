@@ -1,19 +1,7 @@
 import { Component }        from '@angular/core';
 import { Product }  from './product'
-
-
-const PRODUCTS: Product[] = [
-  { id: 11, name: 'iPhone 4' },
-  { id: 12, name: 'iPhone 4s' },
-  { id: 13, name: 'iPhone 5' },
-  { id: 14, name: 'iPhone 5s' },
-  { id: 15, name: 'iPhone 5c' },
-  { id: 16, name: 'iPhone 6' },
-  { id: 17, name: 'iPhone 6s' },
-  { id: 18, name: 'iPhone 6s plus' },
-  { id: 19, name: 'iPhone 7' },
-  { id: 20, name: 'iPad' }
-];
+import { ProductService }   from './product.service'
+import { OnInit }         from '@angular/core'
 
 
 @Component({
@@ -80,15 +68,27 @@ const PRODUCTS: Product[] = [
     margin-right: .8em;
     border-radius: 4px 0 0 4px;
   }
-`]
+`],
+
+  providers: [ProductService]
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = "CS472 Angular / Lab 2";
   selectedProduct : Product;
-  products = PRODUCTS;
+  products : Product[];
+
+  constructor(private productService : ProductService) {}
 
   onSelect(product:Product):void {
     this.selectedProduct = product;
+  }
+
+  getProducts() : void {
+    this.productService.getProducts().then( products => this.products = products);
+  }
+
+  ngOnInit() : void {
+    this.getProducts();
   }
 }
