@@ -6,11 +6,19 @@ import { AppComponent } from './app.component';
 import { ProductDetailComponent }   from './product-detail.component'
 //import { ProductFormComponent } from './product-form.component'
 import { CalculatePricePipe }   from './calculate-price.pipe'
+import { ProductsComponent }       from './products.component'
+import { ProductService }       from './product.service'
+import { RouterModule }         from '@angular/router'
+import { DashboardComponent }   from './dashboard.component'
+import { AppRoutingModule }     from './app-routing.module'
+
 
 @NgModule({
-    imports:    [ BrowserModule, FormsModule ],
-    declarations:   [ AppComponent, ProductDetailComponent, CalculatePricePipe ],
-    bootstrap:      [ AppComponent ]
+    imports:    [ BrowserModule, FormsModule, AppRoutingModule ],
+    declarations:   [ AppComponent, DashboardComponent, ProductDetailComponent, CalculatePricePipe, ProductsComponent ],
+    bootstrap:      [ AppComponent ],
+    providers: [ ProductService ],
+    
 })
 
 export class AppModule {}
