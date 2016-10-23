@@ -16,5 +16,5 @@ import { Component }    from    '@angular/core'
 })
 
 export class AppComponent {
-    title = "CS572 Angular / Lab 2";
+    title = "CS572 Angular / Lab 5";
 }
